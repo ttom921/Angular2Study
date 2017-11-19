@@ -23,4 +23,7 @@ export class TodoItemsComponent implements OnInit {
     console.log(item.value);
     this.outdelTodoItem.emit(item);
   }
+  getBlueClass(){
+    return 'blue';
+  }
 }
