@@ -1,0 +1,16 @@
+<div>
+  <strong>TodoItemsComponent中測試strong標籤</strong>
+</div>
+<div>
+  <span class="blue"> TodoItemsComponet中測試blue class 籤</span>
+</div>
+<ul>
+  <li *ngFor="let item of items">
+    <label htmlFor="chk_{{item.id}}">
+      <input id="chk_{{item.id}}" type="checkbox" [checked]="item.done" (click)="ckclick(item)" > {{ item.value }}
+    </label>
+    |
+    <a href="#" (click)="deltodoitem(item)" >刪除</a>
+    <span *ngIf="item.done">(已完成)</span>
+    </li>
+</ul>
