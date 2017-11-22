@@ -12,6 +12,7 @@
     </label>
     |
     <a href="#" (click)="deltodoitem(item)" >刪除</a>
-    <span *ngIf="item.done">(已完成)</span>
+    
+    <span> {{item.done | todoDone:true }}</span>
     </li>
 </ul>
