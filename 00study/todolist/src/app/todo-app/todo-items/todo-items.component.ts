@@ -1,4 +1,4 @@
-import { TodoItem } from '../shared/todo-item';
+import { TodoItem } from '../../shared/todo-item';
 import { Component, OnInit, Input ,Output,EventEmitter} from '@angular/core';
 import { TodoListService } from '../todo-list.service';
 

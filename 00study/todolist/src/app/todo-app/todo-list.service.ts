@@ -1,6 +1,6 @@
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { TodoItem } from './shared/todo-item';
+import { TodoItem } from '../shared/todo-item';
 import { Injectable } from '@angular/core';
 
 
