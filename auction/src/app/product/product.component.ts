@@ -8,6 +8,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class ProductComponent implements OnInit {
   private products: Array<Product>;
+  private imgUrl='http://placehold.it/300x150';
   constructor() { }
 
   ngOnInit() {
