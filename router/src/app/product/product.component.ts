@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Params, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  private productId:number;
+  
+  constructor(private routerinfo:ActivatedRoute) { }
 
   ngOnInit() {
+    //參數式 
+    //this.productId=this.routerinfo.snapshot.queryParams["id"];
+    //url式
+    this.routerinfo.params.subscribe((params:Params)=> this.productId=params["id"]);
   }
 
 }

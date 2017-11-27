@@ -13,6 +13,7 @@ export class AppComponent {
 
   }
   toProductDetails(){
-    this.router.navigate(['/product']);
+    //參數式
+    this.router.navigate(['/product',2]);
   }
 }

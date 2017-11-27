@@ -1,5 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <a [routerLink]="['/']" >主頁</a>
-<a [routerLink]="['/product']">商品詳情</a>
+<!-- 參數式 
+<a [routerLink]="['/product']" [queryParams]="{id:1}" >商品詳情</a>
+-->
+<!-- url式 -->
+<a [routerLink]="['/product',1]"  >商品詳情</a>
 <input type="button" value="商品詳情" (click)="toProductDetails()" />
 <router-outlet></router-outlet>
