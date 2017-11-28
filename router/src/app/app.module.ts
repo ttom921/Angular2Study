@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 import { Code404Component } from './code404/code404.component';
+import { ProductDescComponent } from './product/product-desc/product-desc.component';
+import { SellerInfoComponent } from './product/seller-info/seller-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProductComponent,
-    Code404Component
+    Code404Component,
+    ProductDescComponent,
+    SellerInfoComponent
   ],
   imports: [
     BrowserModule,
