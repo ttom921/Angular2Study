@@ -8,7 +8,15 @@ import { SearchComponent } from './search/search.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ProductComponent } from './product/product.component';
 import { StarsComponent } from './stars/stars.component';
-
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { HomeComponent } from './home/home.component';
+import { Routes } from '@angular/router';
+import { patch } from 'webdriver-js-extender';
+import { RouterModule } from '@angular/router';
+const routeConfig: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'product/:prodTitle', component: ProductDetailComponent }
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,10 +25,13 @@ import { StarsComponent } from './stars/stars.component';
     SearchComponent,
     CarouselComponent,
     ProductComponent,
-    StarsComponent
+    StarsComponent,
+    ProductDetailComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot( routeConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
