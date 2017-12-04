@@ -9,6 +9,7 @@ import {Params, ActivatedRoute} from '@angular/router';
 export class ProductComponent implements OnInit {
 
   private productId:number;
+  private productName:string;
   
   constructor(private routerinfo:ActivatedRoute) { }
 
@@ -17,6 +18,12 @@ export class ProductComponent implements OnInit {
     //this.productId=this.routerinfo.snapshot.queryParams["id"];
     //url式
     this.routerinfo.params.subscribe((params:Params)=> this.productId=params["id"]);
+    this.routerinfo.data.subscribe((data:{product:Product})=>{
+      this.productId= data.product.id;
+      this.productName=data.product.name;
+    });
   }
-
+}
+export class Product{
+  constructor(public id:number, public name:string){}
 }
