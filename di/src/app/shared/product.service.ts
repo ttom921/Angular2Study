@@ -3,7 +3,7 @@ import { LoggerService } from './logger.service';
 
 @Injectable()
 export class ProductService {
-  constructor(private logger:LoggerService) { }
+  constructor(public logger:LoggerService) { }
   getProduct() : Product{
     this.logger.log("getProduct方法被調用");
     return new Product(0,"iPhone7",5899,"最新款iPhone7的手機");
