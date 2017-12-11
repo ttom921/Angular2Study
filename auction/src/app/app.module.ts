@@ -13,9 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
 import { patch } from 'webdriver-js-extender';
 import { RouterModule } from '@angular/router';
+import { ProductService } from './shared/product.service';
 const routeConfig: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'product/:prodTitle', component: ProductDetailComponent }
+  { path: 'product/:productId', component: ProductDetailComponent }
 ]
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ const routeConfig: Routes = [
     BrowserModule,
     RouterModule.forRoot( routeConfig)
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
