@@ -1,4 +1,13 @@
-<div *ngFor="let product of products" class="col-sm-4 col-md-4 col-lg-4">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <input class="form-control" placeholder="請輸入商品名稱" 
+      [formControl]="titleFilter">
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let product of products | filter:'title':keyword" class="col-sm-4 col-md-4 col-lg-4">
   <div class="thumbnail">
     <img [src]="imgUrl" alt="">
     <div class="caption">

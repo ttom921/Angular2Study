@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,6 +15,7 @@ import { Routes } from '@angular/router';
 import { patch } from 'webdriver-js-extender';
 import { RouterModule } from '@angular/router';
 import { ProductService } from './shared/product.service';
+import { FilterPipe } from './pipe/filter.pipe';
 const routeConfig: Routes = [
   { path: '', component: HomeComponent },
   { path: 'product/:productId', component: ProductDetailComponent }
@@ -28,11 +30,15 @@ const routeConfig: Routes = [
     ProductComponent,
     StarsComponent,
     ProductDetailComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot( routeConfig)
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot( routeConfig),
+    
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
