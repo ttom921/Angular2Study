@@ -19,14 +19,17 @@ export class ProductService {
     new Comment(4, 2, "2017-05-02 23:23:22", "趙六", 3, "東西不錯")
   ];
   constructor() { }
-  getProducts() : Product[] {
+  getAllCategories(): string[] {
+    return ["電子商品", "硬體設備","圖書"];
+  }
+  getProducts(): Product[] {
     return this.products;
   }
   getProduct(id: number): Product {
     return this.products.find((product) => product.Id == id);
   }
-  getCommentsForProductId(id:number) :Comment[] {
-    return this.comments.filter( (comment:Comment) => comment.procuteId== id );
+  getCommentsForProductId(id: number): Comment[] {
+    return this.comments.filter((comment: Comment) => comment.procuteId == id);
   }
 }
 export class Product {

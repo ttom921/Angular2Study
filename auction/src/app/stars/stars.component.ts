@@ -32,7 +32,7 @@ export class StarsComponent implements OnInit, OnChanges {
   clickStar(index:number){
     if(!this.readonly){
       this.rating = index +1;
-      this.ngOnInit();
+      //this.ngOnInit();
       this.ratingChange.emit(this.rating);
     }
   }
