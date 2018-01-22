@@ -1,4 +1,6 @@
-import * as express from 'express'
+import * as express from 'express';
+import {Server} from 'ws';
+import { setInterval } from 'timers';
 const app = express();
 export class Product {
     constructor(
@@ -34,3 +36,20 @@ app.get('/api/products/:id', (req, res) => {
 const server = app.listen(8000, "localhost", () => {
     console.log("服務器已啟動，地址是:http://localhost:8000");
 });
+
+const wsServer = new Server( {port:8085});
+
+wsServer.on("connection",websocket =>{
+    websocket.send("這個消息是服務器主動推動送的");
+    websocket.on("message",message =>{
+        console.log("接收到的消息:"+ message);
+    });
+});
+
+setInterval( ()=>{
+    if(wsServer.clients){
+        wsServer.clients.forEach(client =>{
+            client.send("這是定時推送");
+        }   );
+    }
+},2000);
