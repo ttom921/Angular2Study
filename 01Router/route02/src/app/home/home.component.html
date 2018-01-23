@@ -1,0 +1,13 @@
+<div fxFill fxLayout="column" class="layout">
+  <div fxFlex="68px" class="header">
+    <app-header></app-header>
+  </div>
+  <div fxFlex fxLayout="row" class="main">
+    <div fxFlex="200px" class="aside scrollbar">
+      <app-aside></app-aside>
+    </div>
+    <div fxFlex class="content">Content
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
