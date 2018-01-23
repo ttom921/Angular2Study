@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Product, ProductService } from '../shared/product.service';
 import { FormControl } from '@angular/forms';
+
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 @Component({
@@ -10,20 +12,15 @@ import 'rxjs/Rx';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  private products:  Product[];
-  private imgUrl='http://placehold.it/300x150';
-  private keyword:string;
-  private titleFilter:FormControl= new FormControl();
-  constructor(private productService: ProductService) { 
-    this.titleFilter.valueChanges
-    .subscribe(
-      value => this.keyword=value
-    );
+  private products: Observable<Product[]>;
+  private imgUrl = 'http://placehold.it/300x150';
+
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.products=  this.productService.  getProducts();
-      
+    this.products = this.productService.getProducts();
+
   }
 
 }
