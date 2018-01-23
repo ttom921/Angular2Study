@@ -5,8 +5,10 @@ import {
   MatButtonModule,
   MatMenuModule,
   MatToolbarModule,
+  MatTooltipModule,
   MatIconModule,
   MatCardModule,
+  MatSidenavModule,
   MatListModule
 } from '@angular/material';
 
@@ -17,8 +19,10 @@ import {
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatIconModule,
     MatCardModule,
+    MatSidenavModule,
     MatListModule
   ],
   declarations: [],
@@ -29,6 +33,7 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
+    MatSidenavModule,
     MatListModule
   ]
 })
