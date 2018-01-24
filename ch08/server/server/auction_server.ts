@@ -41,8 +41,26 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/products', (req, res) => {
+    let result=products;
     //res.send("接收到商品查詢請求");
-    res.json(products);
+    let params = req.query;
+    if(params.title){
+        result = result.filter( p =>p.title.indexOf(params.title) !==-1 );
+        console.log('title');
+        console.log(result);
+    }
+    if(params.price && result.length > 0){
+        result = result.filter( p =>p.price <= parseInt(params.price) );
+        console.log('price');
+        console.log(result);
+    }
+    if(params.category !=="-1" && result.length > 0){
+        result = result.filter( p =>p.categories.indexOf(params.category) !==-1 );
+        console.log('category');
+        console.log(result);
+    }
+
+    res.json(result);
 });
 app.get('/api/products/:id', (req, res) => {
     res.json(products.find((product) => product.Id == req.params.id));

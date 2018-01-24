@@ -1,7 +1,8 @@
 {
+    "compileOnSave": false,
     "compilerOptions": {
-        "compileOnSave": false,
-        "module": "commonjs",
+        "target": "es5",
+        "modult": "commonjs",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "outDir": "build",
