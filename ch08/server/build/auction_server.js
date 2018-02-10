@@ -48,6 +48,9 @@ app.get('/', function (req, res) {
 app.get('/api/products', function (req, res) {
     var result = products;
     //res.send("接收到商品查詢請求");
+    //console.log("接收到商品查詢請求");
+    console.log(req.query);
+    //return res.json(result);
     var params = req.query;
     if (params.title) {
         result = result.filter(function (p) { return p.title.indexOf(params.title) !== -1; });
@@ -59,11 +62,14 @@ app.get('/api/products', function (req, res) {
         console.log('price');
         console.log(result);
     }
-    if (params.category !== "-1" && result.length > 0) {
-        result = result.filter(function (p) { return p.categories.indexOf(params.category) !== -1; });
-        console.log('category');
-        console.log(result);
+    if (params.category) {
+        if (params.category !== "-1" && result.length > 0) {
+            result = result.filter(function (p) { return p.categories.indexOf(params.category) !== -1; });
+            console.log('category->' + params.category);
+            console.log(result);
+        }
     }
+    // console.log(result );
     res.json(result);
 });
 app.get('/api/products/:id', function (req, res) {
@@ -75,17 +81,49 @@ app.get('/api/products/:id/comments', function (req, res) {
 var server = app.listen(8000, "localhost", function () {
     console.log("服務器已啟動，地址是:http://localhost:8000");
 });
+// websockets
+var subscription = new Map();
 var wsServer = new ws_1.Server({ port: 8085 });
 wsServer.on("connection", function (websocket) {
-    websocket.send("這個消息是服務器主動推動送的");
+    // websocket.send("這個消息是服務器主動推動送的");
     websocket.on("message", function (message) {
         console.log("接收到的消息:" + message);
+        var messageObj = JSON.parse(message.toString());
+        console.log("轉換的消息:" + messageObj);
+        console.log("轉換的消息:" + messageObj.productId);
+        var productIds = subscription.get(websocket) || [];
+        subscription.set(websocket, productIds.concat([messageObj.productId]));
     });
 });
+//on(event: 'error', cb: (error: Error) => void): this;
+wsServer.on("error", function (error) {
+    console.log('error =>' + error);
+});
+var currentBids = new Map();
 timers_1.setInterval(function () {
-    if (wsServer.clients) {
-        wsServer.clients.forEach(function (client) {
-            client.send("這是定時推送");
-        });
-    }
+    products.forEach(function (p) {
+        var currentBid = currentBids.get(p.Id) || p.price;
+        var newBid = currentBid + Math.random() * 5;
+        currentBids.set(p.Id, newBid);
+    });
+    subscription.forEach(function (productIds, ws) {
+        if (ws.readyState === 1) {
+            var newBids = productIds.map(function (pid) { return ({
+                productId: pid,
+                bid: currentBids.get(pid)
+            }); });
+            console.log("傳送的物件:" + newBids);
+            ws.send(JSON.stringify(newBids));
+        }
+        else {
+            subscription.delete(ws);
+        }
+    });
 }, 2000);
+//  setInterval( ()=>{
+//      if(wsServer.clients){
+//          wsServer.clients.forEach(client =>{
+//              client.send("這是定時推送");
+//          }   );
+//      }
+//  },2000); 

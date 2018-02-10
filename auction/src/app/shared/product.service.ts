@@ -15,10 +15,10 @@ export class ProductService {
     return this.http.get<Product[]>('/api/products');
   }
   getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>('/api/products' + id);
+    return this.http.get<Product>('/api/products/' + id);
   }
   getCommentsForProductId(id: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>('/api/products' + id + '/comments');
+    return this.http.get<Comment[]>('/api/products/' + id + '/comments');
   }
   search(searchparams: ProductSearchParams): Observable<Product[]> {
 
@@ -28,6 +28,7 @@ export class ProductService {
 
     let httpParams = new HttpParams();
     Object.keys(data).filter(key => data[key]).forEach(function (key) {
+      // console.log(key+ '->'+ data[key] );
       httpParams = httpParams.append(key, data[key]);
     });
     return httpParams;

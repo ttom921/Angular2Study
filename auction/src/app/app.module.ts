@@ -17,6 +17,7 @@ import { patch } from 'webdriver-js-extender';
 import { RouterModule } from '@angular/router';
 import { ProductService } from './shared/product.service';
 import { FilterPipe } from './pipe/filter.pipe';
+import { WebSocketService } from './shared/web-socket.service';
 const routeConfig: Routes = [
   { path: '', component: HomeComponent },
   { path: 'product/:productId', component: ProductDetailComponent }
@@ -42,7 +43,7 @@ const routeConfig: Routes = [
     RouterModule.forRoot( routeConfig),
 
   ],
-  providers: [ProductService],
+  providers: [ProductService,WebSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
